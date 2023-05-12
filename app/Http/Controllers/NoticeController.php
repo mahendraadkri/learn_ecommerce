@@ -20,22 +20,38 @@ class NoticeController extends Controller
 
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'notice'=>'required',
+            'priority'=>'required|numeric'
 
+        ]);
+        Notice::create($data);
+        return redirect(route('notice.index'))->with('success','Notice create successfully');
     }
 
     public function edit($id)
     {
+        $notice = Notice::find($id);
+        return view('notice.edit',compact('notice'));
 
     }
 
     public function update(Request $request,$id)
     {
-
+        $data = $request -> validate([
+            'notice' => 'required',
+            'priority' => 'required|numeric'
+        ]);
+        $notice = Notice::find($id);
+        $notice->update($data);
+        return redirect(route('notice.index'));
     }
 
     public function destroy(Request $request)
     {
-        
+        $notice = Notice::find($request->id);
+        $notice->delete();
+        return redirect(route('notice.index'));
     }
 }
 

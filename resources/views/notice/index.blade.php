@@ -17,7 +17,7 @@
         @foreach($notices as $notice)
         <tr>
             <td>{{$notice->priority}}</td>
-            <td>{{$noice->notice}}</td>
+            <td>{{$notice->notice}}</td>
             <td>
                 <a href="{{route('notice.edit',$notice->id)}}" class="bg-blue-600 px-2 py-1 rounded text-white">Edit</a>
                 <a onclick="return confirm('Are you sure want to delete ?')" href="{{route('notice.destroy',$notice->id)}}" class="bg-red-600 px-2 py-1 rounded text-white">Delete</a>

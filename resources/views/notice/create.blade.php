@@ -5,8 +5,8 @@
 
 <form action="{{route('notice.store')}}" method="POST" class="mt-5" >
     @csrf
-    <input type="text" placeholder="Enter Notice" name="name" class="w-full rounded-lg border-gray-300 my-2" value="{{old('notice')}}">
-    @error('name')
+    <input type="text" placeholder="Enter Notice" name="notice" class="w-full rounded-lg border-gray-300 my-2" value="{{old('notice')}}">
+    @error('notice')
     <p class="text-red-600 text-xs -mt-2">{{$message}}</p>
     @enderror
         
