@@ -1,17 +1,18 @@
 @extends('layouts.app')
 @section('content')
-<h2 class="font-bold text-4xl text-blue-700">Add Notice</h2>
+@include('layouts.message')
+<h2 class="font-bold text-4xl text-blue-700">Add Gallery</h2>
 <hr class="h-1 bg-blue-200">
 
-<form action="{{route('gallery.store')}}" method="POST" class="mt-5" >
+<form action="{{route('gallery.store')}}" method="POST" class="mt-5" enctype="multipart/form-data" >
     @csrf
-    <input type="text" placeholder="Enter Notice" name="notice" class="w-full rounded-lg border-gray-300 my-2" value="{{old('gallery')}}">
-    @error('notice')
+    <input type="text" placeholder="Title" name="title" class="w-full rounded-lg border-gray-300 my-2" value="{{old('title')}}">
+    @error('title')
     <p class="text-red-600 text-xs -mt-2">{{$message}}</p>
     @enderror
         
     
-    <input type="text" placeholder="Priority" name="priority" class="w-full rounded-lg border-gray-300 my-2" value="{{old('priority')}}">
+    <input type="file" placeholder="photopath" name="priority" class="w-full rounded-lg border-gray-300 my-2" value="{{old('priority')}}">
     @error('priority')
     <p class="text-red-600 text-xs -mt-2">{{$message}}</p>
     @enderror

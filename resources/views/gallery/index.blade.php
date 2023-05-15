@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@include('layouts.message')
 <h2 class="font-bold text-4xl text-blue-700">Gallery</h2>
     <hr class="h-1 bg-blue-200">
 
@@ -9,15 +10,17 @@
 
     <table id="mytable" class="display">
         <thead>
-            <th>Order</th>
-            <th>Gallery</th>
+            <th>S.N.</th>
+            <th>Title</th>
+            <th>Image</th>
             <th>Action</th>
         </thead>
         <tbody>
             @foreach ($gallery as $gallery )
             <tr>
-                <td>{{$gallery->priority}}</td>
-                <td>{{$gallery->name}}</td>
+                <td>{{$gallery->id}}</td>
+                <td>{{$gallery->title}}</td>
+                <td>{{$gallery->photopath}}</td>
                 <td>
                     <a href="{{Route('gallery.edit',$gallery->id)}}" class="bg-blue-600 text-white px-2 py-1 rounded hover:shadow-blue-400">Edit</a>
 

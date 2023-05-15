@@ -27,7 +27,7 @@ class CategoryController extends Controller
         ]);
         //dd($data); print data
         Categories::create($data);
-        return redirect(route('category.index'));
+        return redirect(route('category.index'))->with('success','Category created successfully!');
     }
     public function edit($id)
     {

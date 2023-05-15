@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@include('layouts.message')
 <h2 class="font-bold text-4xl text-blue-700">Add Notice</h2>
 <hr class="h-1 bg-blue-200">
 

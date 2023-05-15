@@ -37,10 +37,20 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'gallery'=>'required',
-            'priority'=>'required|numeric'
+            'title'=>'required',
+            'photopath'=>'required|image|mimes::jpeg,png,jpg'
 
         ]);
+
+        if($request->hasFile('photopath')){
+            $image = $request->file('photopath');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images/gallery');
+            $image ->move($destinationPath,$name);
+            $data['photopath']= $name;
+        }
+
+
         Gallery::create($data);
         return redirect(route('gallery.index'))->with('success','Gallery
          create successfully');
