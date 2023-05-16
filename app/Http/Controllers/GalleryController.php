@@ -52,8 +52,7 @@ class GalleryController extends Controller
 
 
         Gallery::create($data);
-        return redirect(route('gallery.index'))->with('success','Gallery
-         create successfully');
+        return redirect(route('gallery.index'))->with('success','Gallery create successfully');
     }
 
     /**
@@ -73,9 +72,10 @@ class GalleryController extends Controller
      * @param  \App\Models\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gallery $gallery)
+    public function edit(string $id)
     {
-        //
+        $gallery = Gallery::find($id);
+        return view('gallery.edit',compact('gallery'));
     }
 
     /**
@@ -96,8 +96,10 @@ class GalleryController extends Controller
      * @param  \App\Models\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gallery $gallery)
+    public function destroy(string $id)
     {
-        //
+        $gallery = Gallery::find($id);
+        $gallery->delete();
+        return redirect(route('gallery.index'));
     }
 }

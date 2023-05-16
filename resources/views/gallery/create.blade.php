@@ -6,14 +6,14 @@
 
 <form action="{{route('gallery.store')}}" method="POST" class="mt-5" enctype="multipart/form-data" >
     @csrf
-    <input type="text" placeholder="Title" name="title" class="w-full rounded-lg border-gray-300 my-2" value="{{old('title')}}">
+    <input type="text" placeholder="Title" name="title" class="w-full rounded-lg border border-b-2 border-gray-300 " value="{{old('title')}}">
     @error('title')
     <p class="text-red-600 text-xs -mt-2">{{$message}}</p>
     @enderror
         
     
-    <input type="file" placeholder="photopath" name="priority" class="w-full rounded-lg border-gray-300 my-2" value="{{old('priority')}}">
-    @error('priority')
+    <input type="file" placeholder="photopath" name="photopath" class="w-full rounded-lg border-gray-300 my-2" value="{{old('pphotopath')}}">
+    @error('photopath')
     <p class="text-red-600 text-xs -mt-2">{{$message}}</p>
     @enderror
 

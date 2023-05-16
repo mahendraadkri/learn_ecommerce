@@ -20,7 +20,7 @@
             <tr>
                 <td>{{$gallery->id}}</td>
                 <td>{{$gallery->title}}</td>
-                <td>{{$gallery->photopath}}</td>
+                <td><img class= "w-20" src="{{asset('images/gallery/'.$gallery->photopath)}}"></td>
                 <td>
                     <a href="{{Route('gallery.edit',$gallery->id)}}" class="bg-blue-600 text-white px-2 py-1 rounded hover:shadow-blue-400">Edit</a>
 
