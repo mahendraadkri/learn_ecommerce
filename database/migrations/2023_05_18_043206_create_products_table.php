@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('price');
             $table->string('photopath');
             $table->text('description');
-            $table->foreignId('categoty_id')->constrained(); //if data exist then we cannot delete category using constrained
+            $table->foreignId('category_id')->constrained(); //if data exist then we cannot delete category using constrained
             $table->timestamps();
         });
     }

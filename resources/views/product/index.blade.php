@@ -24,13 +24,13 @@
             <tr>
                 <td>{{$product->id}}</td>
                 <td>{{$product->name}}</td>
-                <td><img class= "w-44" src="{{asset('images/product/'.$product->photopath)}}" alt=""></td>
+                <td><img class= "w-44" src="{{asset('images/products/'.$product->photopath)}}" alt=""></td>
                 <td>{{$product->description}}</td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->stock}}</td>
-                <td>{{$product->category}}</td>
+                <td>{{$product->category->name}}</td>
                 <td>
-                    <a href="{{Route('product.edit',$gallery->id)}}" class="bg-blue-600 text-white px-2 py-1 rounded hover:shadow-blue-400">Edit</a>
+                    <a href="{{route('product.edit',$product->id)}}" class="bg-blue-600 text-white px-2 py-1 rounded hover:shadow-blue-400">Edit</a>
 
                     <a onclick="return confirm('Are you sure you want to delete!!')" href="{{Route('product.destroy',$product->id)}}" class="bg-red-600 text-white px-2 py-1 rounded hover:shadow-red-400">Delete</a>
                 </td>
