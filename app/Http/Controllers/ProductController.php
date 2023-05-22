@@ -124,7 +124,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        File::delete(public_path('/images/product/',$product->photopath));
+        File::delete(public_path('/images/product/'.$product->photopath));
         return redirect(route('product.index'))->with('success','Product Deleted Successfully');
     }
 }

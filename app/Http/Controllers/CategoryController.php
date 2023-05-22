@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Categories::all();
+        $categories = Category::all();
         return view('category.index',compact('categories'));
     }
 
@@ -26,12 +27,12 @@ class CategoryController extends Controller
             'priority'=>'required|numeric'
         ]);
         //dd($data); print data
-        Categories::create($data);
+        Category::create($data);
         return redirect(route('category.index'))->with('success','Category created successfully!');
     }
     public function edit($id)
     {
-        $category = Categories::find($id);
+        $category = Category::find($id);
         return view('category.edit',compact('category'));
     }
     public function update(Request $request, $id)
@@ -41,14 +42,14 @@ class CategoryController extends Controller
             'priority' => 'required|numeric'
         ]);
 
-        $category = Categories::find($id);
+        $category = Category::find($id);
         $category->update($data);
         return redirect(route('category.index'));
     }
 
     public function destroy($id)
     {
-        $category = Categories::find($id);
+        $category = Category::find($id);
         $category->delete();
         return redirect(route('category.index'));
     }
