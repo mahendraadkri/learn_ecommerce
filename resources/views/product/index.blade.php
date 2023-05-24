@@ -10,7 +10,7 @@
 
     <table id="mytable" class="display">
         <thead>
-            <th>S.N.</th>
+            <th>ID</th>
             <th>Product Name</th>
             <th>Picture</th>
             <th>Description</th>
