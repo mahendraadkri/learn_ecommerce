@@ -23,6 +23,8 @@
             <div class="w-56 fixed top-0 left-0 bottom-0 bg-gray-200 shadow-lg shadow-red-300">
                 <img class="bg-white mx-4  w-44 my-5 rounded-lg py-3" src="" alt=""  >
 
+                <h3>Hello, {{auth()->user()->role}}</h3>
+
            
             <a href="dashboard" class="text-x1 font-bold border-b-2 border-blue-500 block ml-4 px-2 py-1 hover:bg-blue-500 hover:text-white">Dashbord</a>
 
