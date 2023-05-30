@@ -27,6 +27,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/',[PagesController::class,'home'])->name('home');
+Route::get('/viewproduct/{product}',[PagesController::class,'viewproduct'])->name('viewproduct');
+
 
 
 

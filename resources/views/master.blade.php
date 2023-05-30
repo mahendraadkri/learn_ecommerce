@@ -13,10 +13,12 @@
 <body>
     <nav class="navbar">
         <ul class = "menu">
-            <li><a href="">Home</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Login</a></li>
+            @foreach ($categories as $category )
+            <li><a href="/">{{$category->name}}</a></li>
+                
+            @endforeach
+            <li><a href="/welcome">Home</a></li>
+            
         </ul>
     </nav>
     @yield('content')
