@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -20,9 +21,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[PagesController::class,'home'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,7 +29,8 @@ Route::get('/dashboard', function () {
 
 
 
-Route::middleware('auth')->group(function () {
+
+Route::middleware('auth','isadmin')->group(function () {
     //route of category
     Route::get('/category',[CategoryController::class,'index'])-> name('category.index');
     Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');
@@ -74,5 +74,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';
