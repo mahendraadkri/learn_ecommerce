@@ -17,6 +17,11 @@
             <p class="text-red-600 text-xs -mt-2">{{$message}}</p>
         @enderror
 
+        <input type="number" placeholder="Old Price" name="oldprice" class="w-full rounded-lg border-gray-300 my-2" value="{{$product->oldprice}}">
+        @error('oldprice')
+            <p class="text-red-600 text-xs -mt-2">{{$message}}</p>
+        @enderror
+
         <input type="number" placeholder="Price" name="price" class="w-full rounded-lg border-gray-300 my-2" value="{{$product->price}}">
         @error('price')
             <p class="text-red-600 text-xs -mt-2">{{$message}}</p>

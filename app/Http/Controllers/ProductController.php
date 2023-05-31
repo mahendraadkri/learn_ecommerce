@@ -36,6 +36,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'name' => 'required|unique:products',
             'price' => 'numeric|required',
+            'oldprice' => 'numeric|nullable',
             'stock' => 'numeric|required',
             'description' => 'required',
             'photopath' => 'required'
@@ -81,6 +82,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'name' => 'required|unique:products,name,'.$product->id,
             'price' => 'numeric|required',
+            'oldprice' => 'numeric|nullable',
             'stock' => 'numeric|required',
             'description' => 'required',
             'photopath' => 'nullable'

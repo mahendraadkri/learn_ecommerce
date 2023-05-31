@@ -25,7 +25,7 @@ Route::get('/',[PagesController::class,'home'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','isadmin'])->name('dashboard');
 
 Route::get('/',[PagesController::class,'home'])->name('home');
 Route::get('/viewproduct/{product}',[PagesController::class,'viewproduct'])->name('viewproduct');
@@ -33,7 +33,7 @@ Route::get('/viewproduct/{product}',[PagesController::class,'viewproduct'])->nam
 
 
 
-Route::middleware('auth','isadmin')->group(function () {
+Route::middleware(['auth','isadmin'])->group(function () {
     //route of category
     Route::get('/category',[CategoryController::class,'index'])-> name('category.index');
     Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');

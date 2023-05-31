@@ -12,9 +12,22 @@
             <img src="{{asset('images/products/'.$product->photopath)}}" alt="" class="w-full h-72 object-cover rounded-t-lg">
             <div class="p-2">
                 <p class="font-bold text-2xl">{{$product->name}}</p>
-                <p class="font-bold text-2xl"><span class="line-through text-gray-500 text-xl">1500/-</span> Rs. {{$product->price}}/-</p>
+                <p class="font-bold text-2xl">
+                    @if ($product->oldprice != '')
+                        
+                    
+                    <span class="line-through text-gray-500 text-xl">Rs.{{$product->oldprice}}/-</span> Rs. {{$product->price}}/-</p>
+                    @endif
             </div>
-            <p class="absolute top-1 right-1 bg-blue-600 text-white rounded-lg px-4 py-1">20% off</p>
+            @if ($product->oldprice != '')
+                
+            
+            @php
+                $discount = ($product->oldprice - $product->price) / $product->oldprice * 100;
+                $discount = round($discount);
+            @endphp
+            <p class="absolute top-1 right-1 bg-blue-600 text-white rounded-lg px-4 py-1">{{$discount}}% off</p>
+            @endif
         </div>
     </a>
     @endforeach

@@ -13,11 +13,22 @@
 <body>
     <nav class="navbar">
         <ul class = "menu">
+            <li><a href="/welcome">Home</a></li>
             @foreach ($categories as $category )
             <li><a href="/">{{$category->name}}</a></li>
                 
             @endforeach
-            <li><a href="/welcome">Home</a></li>
+            @if (auth()->user())
+            <li><a href="">{{auth()->user()->name}}</a></li>
+            <li>
+                <form class="inline text-white" action="{{route('logout')}}" method="POST">
+                    @csrf
+                    <button type="submit">OUT</button>
+                </form>
+            </li>
+                
+            @endif
+            
             
         </ul>
     </nav>

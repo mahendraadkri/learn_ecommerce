@@ -6,7 +6,10 @@
         </div>
         <div class="border-l-2 px-2 col-span-2">
             <h2 class="text-3xl">{{$product->name}}</h2>
-            <p class="text-red-700 line-through text-lg">Rs. 1500/- </p>
+            @if ($product->oldprice != '')
+            <p class="text-red-700 line-through text-lg">Rs. {{$product->oldprice}}/- </p>   
+            @endif
+           
             <p class="text-red-700 text-2xl font-bold">{{$product->price}} </p>
             <p>Quality</p>
             <p class="mt-4 flex items-center">
