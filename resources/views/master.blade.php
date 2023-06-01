@@ -2,40 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>This is home page</title>
+    <title>This is title</title>
     <link rel="stylesheet" href="{{asset('mycss/style.css')}}">
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-
-
 <body>
-    <nav class="navbar">
-        <ul class = "menu">
-            <li><a href="/welcome">Home</a></li>
-            @foreach ($categories as $category )
-            <li><a href="/">{{$category->name}}</a></li>
-                
-            @endforeach
-            @if (auth()->user())
-            <li><a href="">{{auth()->user()->name}}</a></li>
-            <li>
-                <form class="inline text-white" action="{{route('logout')}}" method="POST">
+    <div class="flex px-24 justify-between bg-gray-300 p-2 text-lg">
+        <span>Ph: 0564564656</span>
+        @if(auth()->user())
+            <div>
+                <a href="">{{auth()->user()->name}} /</a>
+                <form class="inline" action="{{route('logout')}}" method="POST">
                     @csrf
-                    <button type="submit">OUT</button>
+                    <button type="submit"> Logout</button>
                 </form>
-            </li>
-                
-            @endif
-            
+            </div>
+            @else
+        <span><a href="{{route('userlogin')}}">Login/Register</a></span>
+        @endif
+    </div>
+    <nav class="navbar sticky top-0">
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            @foreach($categories as $category)
+            <li><a href="/">{{$category->name}}</a></li>
+            @endforeach
             
         </ul>
     </nav>
+
     @yield('content')
 
     <footer class="footer">
-        <p>This is Footer</p>
+        <p>This is footer</p>
     </footer>
 
     

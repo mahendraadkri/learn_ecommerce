@@ -25,5 +25,11 @@ public function viewproduct(Product $product)
     return view('viewproduct',compact('product','categories'));
 }
 
+public function userlogin()
+{
+    $categories = Category::orderBy('priority')->get();
+    return view('userlogin',compact('categories'));
+}
+
 
 }
