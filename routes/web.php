@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NoticeController;
@@ -29,11 +30,17 @@ Route::get('/viewproduct/{product}',[PagesController::class,'viewproduct'])->nam
 Route::get('/userlogin',[PagesController::class,'userlogin'])->name('userlogin');
 
 Route::get('/userregister',[UserController::class,'userregister'])->name('user.register');
+
 Route::post('/userregister',[UserController::class,'userstore'])->name('user.register');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified','isadmin'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/mycart',[CartController::class,'index'])->name('cart.index');
+    Route::post('/mycart/store',[CartController::class,'store'])->name('cart.store');
+});
 
 
 

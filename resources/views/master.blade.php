@@ -7,11 +7,12 @@
     <title>This is title</title>
     <link rel="stylesheet" href="{{asset('mycss/style.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="{{asset('datatable/jquery-3.6.0.js')}}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <div class="flex px-24 justify-between bg-gray-300 p-2 text-lg">
-        <span>Ph: 0564564656</span>
+        <span>Ph: 9866666666</span>
         @if(auth()->user())
             <div>
                 <a href="">{{auth()->user()->name}} /</a>
@@ -19,6 +20,7 @@
                     @csrf
                     <button type="submit"> Logout</button>
                 </form>
+                <a href="{{route('cart.index')}}"> My Cart</a>
             </div>
             @else
         <span><a href="{{route('userlogin')}}">Login/Register</a></span>
