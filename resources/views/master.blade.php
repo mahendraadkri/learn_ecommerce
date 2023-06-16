@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="flex px-24 justify-between bg-gray-300 p-2 text-lg">
-        <span>Ph: 9866666666</span>
+        <span>Ph: 9856565656</span>
         @if(auth()->user())
             <div>
                 <a href="">{{auth()->user()->name}} /</a>
@@ -20,7 +20,7 @@
                     @csrf
                     <button type="submit"> Logout</button>
                 </form>
-                <a href="{{route('cart.index')}}"> My Cart</a>
+                <a href="{{route('cart.index')}}"> My Cart - {{$itemsincart}} </a>
             </div>
             @else
         <span><a href="{{route('userlogin')}}">Login/Register</a></span>
@@ -30,7 +30,7 @@
         <ul class="menu">
             <li><a href="/">Home</a></li>
             @foreach($categories as $category)
-            <li><a href="/">{{$category->name}}</a></li>
+            <li><a href="{{route('categoryproduct',$category->id)}}">{{$category->name}}</a></li>
             @endforeach
             
         </ul>
