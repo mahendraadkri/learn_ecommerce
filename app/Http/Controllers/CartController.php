@@ -88,4 +88,18 @@ class CartController extends Controller
     {
         //
     }
+
+    public function checkout()
+    {
+        if(!auth()->user())
+        {
+            $itemsincart = 0;
+        }
+        else
+        {
+            $itemsincart = Cart::where('user_id',auth()->user()->id)->count();
+        }
+        $categories = Category::orderBy('priority')->get();
+        return view('checkout',compact('categories','itemsincart'));
+    }
 }

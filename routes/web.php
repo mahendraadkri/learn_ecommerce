@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,7 @@ Route::get('/categoryproduct/{id}',[PagesController::class,'categoryproduct'])->
 Route::get('/userlogin',[PagesController::class,'userlogin'])->name('userlogin');
 
 Route::get('/userregister',[UserController::class,'userregister'])->name('user.register');
+
 Route::post('/userregister',[UserController::class,'userstore'])->name('user.register');
 
 Route::get('/dashboard', function () {
@@ -41,6 +43,8 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function(){
     Route::get('/mycart',[CartController::class,'index'])->name('cart.index');
     Route::post('/mycart/store',[CartController::class,'store'])->name('cart.store');
+    Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
+    Route::get('/checkout',[CartController::class,'checkout'])->name('cart.checkout');
 });
 
 
