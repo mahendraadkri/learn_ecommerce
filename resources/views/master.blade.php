@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>This is title</title>
+    <title>Online Electronic Store</title>
     <link rel="stylesheet" href="{{asset('mycss/style.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
     <script src="{{asset('datatable/jquery-3.6.0.js')}}"></script>

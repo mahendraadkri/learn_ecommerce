@@ -9,6 +9,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Cart;
 use App\Models\Gallery;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/mycart/store',[CartController::class,'store'])->name('cart.store');
     Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
     Route::get('/checkout',[CartController::class,'checkout'])->name('cart.checkout');
+    Route::get('/myorders',[PagesController::class,'orders'])->name('user.order');
 });
 
 

@@ -2,10 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cart;
+use App\Models\order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -15,6 +36,53 @@ class OrderController extends Controller
             'person_name' => 'required',
         ]);
 
-        dd('order placed');
+        $data['user_id'] = auth()->user()->id;
+        $data['order_date'] = date('Y-m-d');
+        $data['status'] = 'Pending';
+        $carts = Cart::where('user_id', auth()->user()->id)->where('is_ordered',false)->get();
+        $totalamount = 0;
+        foreach($carts as $cart) {
+            $total = $cart->product->price * $cart->qty;
+            $totalamount += $total;
+        }
+        $data['amount'] = $totalamount;
+        $ids = $carts->pluck('id')->toArray();
+        $data['cart_id'] = implode(',', $ids);
+        Order::create($data);
+        Cart::whereIn('id', $ids)->update(['is_ordered' => true]);
+        //mail
+        return redirect()->route('home')->with('success', 'Order has been placed successfully');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(order $order)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(order $order)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, order $order)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(order $order)
+    {
+        //
     }
 }
