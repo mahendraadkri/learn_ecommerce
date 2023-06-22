@@ -63,6 +63,13 @@ Route::middleware(['auth','isadmin'])->group(function () {
     // Route::get('/category/{id}/destroy',[CategoryController::class,'destroy'])->name('category.destroy');
     Route::post('/category/destroy',[CategoryController::class,'destroy'])->name('category.destroy');
 
+    //orders
+    Route::get('/order',[OrderController::class,'index'])->name('order.index');
+    Route::get('/order/{id}/edit',[OrderController::class,'edit'])->name('order.edit');
+    Route::post('/order/{id}/update',[OrderController::class,'update'])->name('order.update');
+    Route::get('/order/status/{id}/{status}',[OrderController::class,'status'])->name('order.status');
+    Route::get('/order/{id}/details',[OrderController::class,'details'])->name('order.details');
+
 
 
     //Notice
@@ -79,7 +86,7 @@ Route::middleware(['auth','isadmin'])->group(function () {
 
 
     //Product
-    Route::middleware('isadmin')->group(function(){
+        Route::middleware('isadmin')->group(function(){
         Route::get('/product',[ProductController::class,'index'])->name('product.index');
         Route::get('/product/create',[ProductController::class,'create'])->name('product.create');
         Route::post('/product/store',[ProductController::class,'store'])->name('product.store');

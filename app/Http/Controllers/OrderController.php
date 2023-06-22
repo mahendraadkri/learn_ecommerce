@@ -13,7 +13,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = order::all();
+        return view('orders.index',compact('orders'));
     }
 
     /**
@@ -27,6 +28,23 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    public function details($orderid)
+    {
+        $order = Order::find($orderid);
+        $carts = Cart::whereIn('id',explode(',',$order->cart_id))->get();
+        return view('orders.details',compact('carts','order'));
+    }
+
+    public function status($id,$status)
+    {
+        $order = Order::find($id);
+        $order->status = $status;
+        $order->save();
+        return redirect(route('order.index'))->with('success','Status changed to ',$status);
+
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
