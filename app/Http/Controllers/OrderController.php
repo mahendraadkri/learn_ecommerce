@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\cart;
 use App\Models\order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -68,7 +70,19 @@ class OrderController extends Controller
         $data['cart_id'] = implode(',', $ids);
         Order::create($data);
         Cart::whereIn('id', $ids)->update(['is_ordered' => true]);
-        //mail
+        //mail when order is placed
+        $data = [
+            'name' => auth()->user()->name,
+            'mailmessage' => 'New Order has been placed.',
+        
+        ];
+        Mail::send('email.email',$data, function($message){
+            $message->to(auth()->user()->email)->subject('New Order Placed');
+        });
+            
+        
+
+
         return redirect()->route('home')->with('success', 'Order has been placed successfully');
     }
 
